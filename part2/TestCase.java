@@ -8,8 +8,9 @@ public class TestCase {
 		this.name = name;
 	}
 	
-	public void setUp(){
-	}
+	abstract public void tearDown();
+
+	abstract public void setUp();
 	
 	public void run() throws Exception{
 		setUp();
