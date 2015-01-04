@@ -5,13 +5,23 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestCaseTest {
-
+	
+	
+	public void setUp(){
+	}
+	
 	@Test
 	public void testRunning() throws Exception {
-		WasRun wasRun = new WasRun("testMethod");
-		assertFalse(wasRun.wasRun);
-		wasRun.run();
-		assertTrue(wasRun.wasRun);
+		WasRun test = new WasRun("testMethod");
+		test.run();
+		assertTrue(test.wasRun);
 	}
 
+	@Test
+	public void testSetUp() throws Exception{
+		WasRun test =  new WasRun("testMethod");
+		test.run();
+		assertTrue(test.wasSetUp);
+
+	}
 }
