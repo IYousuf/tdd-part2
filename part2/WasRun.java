@@ -3,7 +3,7 @@ package part2;
 public class WasRun extends TestCase{
 	
 	boolean wasRun;
-	boolean wasSetUp;
+	String log;
 	
 	WasRun(String methodName){
 		super(methodName);
@@ -12,11 +12,18 @@ public class WasRun extends TestCase{
 	
 	public void testMethod(){
 		wasRun = true;
+		log = log +"testMethod ";
 	}
 
+	@Override
 	public void setUp(){
 		wasRun = false;
-		this.wasSetUp=true;
+		log = "setUp ";
+	}
+	
+	@Override
+	public void tearDown(){
+		log = log+"tearDown ";
 	}
 
 }
