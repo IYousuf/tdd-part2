@@ -18,4 +18,19 @@ public class TestCaseTest {
 		assertTrue(test.log.equals("setUp testMethod tearDown "));
 
 	}
+	
+	@Test
+	public void testResult() throws Exception{
+		WasRun test =  new WasRun("testMethod");
+		TestResult testResult = test.run();
+		assertTrue(testResult.summary().equals("1 run, 0 failed"));
+	}
+	
+	@Test
+	public void testFailedResult() throws Exception{
+		WasRun test =  new WasRun("testMethod");
+		TestResult testResult = test.run();
+		assertTrue(testResult.summary().equals("1 run, 1 failed"));
+	}
+	
 }
