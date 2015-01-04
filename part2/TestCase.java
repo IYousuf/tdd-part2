@@ -12,8 +12,11 @@ public class TestCase {
 
 	abstract public void setUp();
 	
-	public void run() throws Exception{
+	public TestResult run() throws Exception{
+		TestResult result = new TestResult();
+		result.testStarted();
 		setUp();
 		this.getClass().getMethod("testMethod").invoke(this);
+		return result;
 	}
 }
