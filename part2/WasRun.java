@@ -26,4 +26,8 @@ public class WasRun extends TestCase{
 		log = log+"tearDown ";
 	}
 
+	public void testBrokenMethod() throws Exception{
+		throw new Exception();
+	}
+	
 }
