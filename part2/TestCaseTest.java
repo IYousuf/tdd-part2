@@ -11,17 +11,11 @@ public class TestCaseTest {
 	}
 	
 	@Test
-	public void testRunning() throws Exception {
-		WasRun test = new WasRun("testMethod");
-		test.run();
-		assertTrue(test.wasRun);
-	}
-
-	@Test
-	public void testSetUp() throws Exception{
+	public void testTemplateMethod() throws Exception{
 		WasRun test =  new WasRun("testMethod");
 		test.run();
-		assertTrue(test.wasSetUp);
+		test.tearDown();
+		assertTrue(test.log.equals("setUp testMethod tearDown "));
 
 	}
 }
