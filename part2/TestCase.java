@@ -16,7 +16,12 @@ public class TestCase {
 		TestResult result = new TestResult();
 		result.testStarted();
 		setUp();
-		this.getClass().getMethod("testMethod").invoke(this);
+		try{
+			this.getClass().getMethod("testMethod").invoke(this);
+		}catch(Exception ex){
+			result.testFailed();
+		}
+		tearDown();
 		return result;
 	}
 }
