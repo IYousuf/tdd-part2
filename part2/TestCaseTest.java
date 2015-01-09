@@ -1,42 +1,60 @@
 package part2;
 
-import static org.junit.Assert.*;
+public class TestCaseTest extends TestCase {
 
-import org.junit.Test;
+	private TestResult result ;
 
-public class TestCaseTest {
 	
-	
+	TestCaseTest(String name) {
+		super(name);
+	}
+
 	public void setUp(){
+		result = new TestResult();
 	}
 	
-	@Test
 	public void testTemplateMethod() throws Exception{
 		WasRun test =  new WasRun("testMethod");
-		test.run();
-		assertTrue(test.log.equals("setUp testMethod tearDown "));
+		test.run(result);
+		assert(test.log.equals("setUp testMethod tearDown "));
 	}
 	
-	@Test
 	public void testResult() throws Exception{
 		WasRun test =  new WasRun("testMethod");
-		TestResult testResult = test.run();
-		assertTrue(testResult.summary().equals("1 run, 0 failed"));
+		test.run(result);
+		assert(result.summary().equals("1 run, 0 failed"));
 	}
 	
-	@Test
 	public void testFailedResult() throws Exception{
 		WasRun test =  new WasRun("testMethod");
-		TestResult testResult = test.run();
-		assertFalse(testResult.summary().equals("1 run, 1 failed"));
+		test.run(result);
+		assert(result.summary().equals("1 run, 1 failed"));
 	}
 	
-	@Test
 	public void testFailedResultFormatting(){
-		TestResult result = new TestResult();
 		result.testStarted();
 		result.testFailed();
-		assertTrue(result.summary().equals("1 run, 1 failed"));
+		assert(result.summary().equals("1 run, 1 failed"));
 	}
+	
+	public void testSuite() throws Exception{
+		TestSuite suite = new TestSuite();
+		suite.add(new WasRun("testMethod"));
+		suite.add(new WasRun("testBrokenMethod"));
+		suite.run(result);
+		assert("2 run, 1 failed" == result.summary());
+	}
+	
+    public static void main(String[] args) throws Exception {
+        TestSuite suite = new TestSuite();
+        TestResult result = new TestResult();
+        suite.add(new WasRun("testTemplateMethod"));
+        suite.add(new WasRun("testResult"));
+        suite.add(new WasRun("testFailedResultFormatting"));
+        suite.add(new WasRun("testFailedResult"));
+        suite.add(new WasRun("testSuite"));
+        suite.run(result);
+        System.out.println(result.summary());
+    }
 	
 }
