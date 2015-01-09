@@ -3,17 +3,21 @@ package part2;
 public class TestCase {
 	
 	String name;
-	
+	public TestCase(){}
 	TestCase(String name){
 		this.name = name;
 	}
 	
-	abstract public void tearDown();
+	public void tearDown(){}
 
-	abstract public void setUp();
+	public void setUp(){};
 	
 	public TestResult run() throws Exception{
 		TestResult result = new TestResult();
+		return run(result);
+	}
+	
+	public TestResult run(TestResult result) throws Exception{
 		result.testStarted();
 		setUp();
 		try{
